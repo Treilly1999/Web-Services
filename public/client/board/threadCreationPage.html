@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Thread</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+<div>
+    <div class = "top-header">
+        <form class="top" action="/home" method="get">
+            <div>
+                <input class="top-header-inner" type="submit" value="Home"></input>
+            </div>
+        </form>
+
+        <form class="top" action="/discussionBoard" method="get">
+            <div>
+                <input class="top-header-inner" type="submit" value="DiscussionBoard"></input>
+            </div>
+        </form>
+
+        <form class="top" action="/profile" method="get">
+            <div>
+                <input class="top-header-inner" type="submit" value="Profile"></input>
+            </div>
+        </form>
+
+        <form class="top" action="/logout" method="GET">
+            <input type="submit" value="Logout">
+        </form>
+    </div>
+
+    <form action="/threads/createThread" method="POST">
+        <div>
+            <label for="topic">Topic</label>
+            <input type="text" id="topic" name="topic" required>
+        </div>
+        <div>
+            <label for="text">Body</label>
+            <textarea id="text" name="text" rows="4" cols="50" required></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Create Thread">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

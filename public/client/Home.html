@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <script>
+        const req = new XMLHttpRequest();
+        req.onreadystatechange = function () {
+            if (req.readyState == 4 && req.status == 200) {
+                const user = JSON.parse(req.response).user;
+                document.getElementById("welcome-message").innerText = `Welcome ${user.username}`;
+            }
+        };
+        req.open("GET", "http://68.9.212.228:8080/users/user", true);
+        req.send();
+    </script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+    <div>
+        <h1 id="welcome-message"></h1>
+
+        <form action="/profile" method="GET">
+            <input type="submit" value="Profile">
+        </form>
+
+        <form action="/discussionBoard" method="GET">
+            <input type="submit" value="Discussion Board">
+        </form>
+
+        <form action="/friends" method="GET">
+            <input type="submit" value="Friends List">
+        </form>
+
+        <form action="/game" method="GET">
+            <input type="submit" value="Game">
+        </form>
+
+        <form class="top" action="/logout" method="GET">
+            <input type="submit" value="Logout">
+        </form>
+
+
+    </div>
+
+</body>
+</html>
