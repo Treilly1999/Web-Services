@@ -58,6 +58,7 @@ router.post('/deleteThread/:id', function(req, res) {
     connectEnsureLogin.ensureLoggedIn()
     const comments = req.params.id;
     //When thread is deleted, so are all comments part of it
+
     Comment.deleteMany({threadID: comments})
         .exec()
         .then(doc => {
@@ -71,7 +72,7 @@ router.post('/deleteThread/:id', function(req, res) {
             if (!doc) {return res.status(404).end(); }
             return res.status(204).redirect('/discussionBoard').end();
         })
-        .catch(err => next(err));
+        .catch(err => console.log(err));
 
 })
 

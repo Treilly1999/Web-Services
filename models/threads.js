@@ -24,8 +24,12 @@ const threadSchema = new mongoose.Schema({
     dislikes: {
         type: Number
     }
-});
 
+
+},
+    {collation: { locale: 'en_US', strength: 2}});
+
+threadSchema.index({body: 'text'})
 const Thread = mongoose.model('Thread', threadSchema, 'Thread');
 
 module.exports = Thread;

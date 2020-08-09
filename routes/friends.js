@@ -49,7 +49,6 @@ router.post('/friendRemove/:id', connectEnsureLogin.ensureLoggedIn(), function(r
         }
     })
 
-
 })
 
 router.get('/getFriendStatus', connectEnsureLogin.ensureLoggedIn(), function(req, res) {

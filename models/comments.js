@@ -22,8 +22,10 @@ const commentSchema = new mongoose.Schema({
     dislikes: {
         type: Number
     }
-});
+},
+    {collation: { locale: 'en_US', strength: 2}});
 
+commentSchema.index({text: 'text'})
 const Comment = mongoose.model('comment', commentSchema, 'comments');
 
 module.exports = Comment;

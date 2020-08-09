@@ -22,9 +22,22 @@ router.get('/getFriend/:id',
 
 router.get('/getFriendThreadHistory/:id',
     connectEnsureLogin.ensureLoggedIn(), function(req, res) {
-        Thread.find({userID: req.params.id}, function(err, result) {
-            if(err) {res.send(err);}
-            else{res.send(result);}
+        Thread.findOne({userID: req.params.id}, function (err, result) {
+            if (err) {
+                res.send(err);
+            }
+            if(!result) {
+                res.status(404).end();
+
+            } else {
+                Thread.find({userID: req.params.id}, function(err, result2) {
+                    if(err) {
+                        res.send(err);
+                    } else {
+                        res.send(result2);
+                    }
+                })
+            }
         })
 
     }
@@ -32,15 +45,32 @@ router.get('/getFriendThreadHistory/:id',
 
 router.get('/getFriendCommentHistory/:id',
     connectEnsureLogin.ensureLoggedIn(), function(req, res) {
-        Comment.find({userID: req.params.id}, function(err, result) {
-            if(err) {res.send(err);}
-            else{res.send(result);}
+
+        Comment.findOne({userID: req.params.id}, function (err, result) {
+            if (err) {
+                res.send(err);
+            }
+            if(!result) {
+                res.status(404).end();
+
+            } else {
+                Comment.find({userID: req.params.id}, function(err, result2) {
+                    if(err) {
+                        res.send(err);
+                    } else {
+                        res.send(result2);
+                    }
+                })
+            }
         })
 
     }
 );
 
 router.post('/deleteAccount', connectEnsureLogin.ensureLoggedIn(), function(req, res) {
+
+    console.log("Im so smart");
+
     User.findByIdAndRemove(req.user.id)
         .exec()
         .then(doc => {

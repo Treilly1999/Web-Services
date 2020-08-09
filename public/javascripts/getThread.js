@@ -11,7 +11,7 @@ function populateThreadPool() {
                 const id = item._id;
                 const topic = item.topic;
 
-                $('#threadPool').append('<form  style="display:grid; grid-template-columns: 1fr" id="viewThread" action="/threads/threadPages" method="get"><input id = "value" type="submit"><label id="author"></label></form><br>');
+                $('#threadPool').append('<form style="margin: 10px" id="viewThread" action="/threads/threadPages" method="get"><div><input style="width: auto" class="submit" id = "value" type="submit"></div><div><label id="author"></label></div></form><br>');
                 document.getElementById('viewThread').action = '/threads/threadPages/' + id;
                 document.getElementById('value').value =  topic;
                 document.getElementById('viewThread').id = id;
@@ -21,7 +21,7 @@ function populateThreadPool() {
             });
         }
     };
-    req.open("GET", "http://68.9.212.228:8080/threads/threads", true);
+    req.open("GET", "http://70.175.220.179:8080/threads/threads", true);
     req.send();
 }
 
@@ -36,7 +36,7 @@ function renderThread() {
             user = JSON.parse(req2.response).user;
         }
     };
-    req2.open("GET", "http://68.9.212.228:8080/users/user", true);
+    req2.open("GET", "http://70.175.220.179:8080/users/user", true);
     req2.send();
 
     //grab user information to use user.username for comparison to author of thread.
@@ -52,21 +52,21 @@ function renderThread() {
 
             document.getElementById("header").innerText = `${topic}`;
             document.getElementById("author").innerText = `By: ${author}`;
-            document.getElementById("date").innerText = `Posted: ${date}`;
+            document.getElementById("date").innerText = `Posted: ` + correctDate(date, 2);;
             document.getElementById("body").innerText = `${body}`;
 
             //$('#threadPool').append('<form id="viewThread" action="/threadPages" method="get"><table width="320" border="1"><tr><td colspan="2" rowspan="1">' + topic + '</td></tr><tr><td width="118">' + "By: " +  author + '</td><td width="250">' + "Date: " +  date + '</td></tr><tr><td colspan="2" rowspan="3">' +body + '</td></tr></table><input type="submit" value="Go to thread"></form>');
             //document.getElementById('viewThread').action = '/threadPages/' + item._id;
 
-            if(item.author == user.username)
+            if(item.author == user.username || user.userLevel == 2 || user.userLevel == 1)
             {
-                $('#threadPool').append('<form action="/threads/deleteThread" id="delThread" method="post"><input type="submit" value="Delete Thread"></form>')
+                $('#threadPool').append('<form action="/threads/deleteThread" id="delThread" method="post"><input class="submit" type="submit" value="Delete Thread"></form>')
                 document.getElementById('delThread').action = '/threads/deleteThread/' + item._id;
             }
         }
     };
 
-    req.open("GET", "http://68.9.212.228:8080/threads/individualThread/" + id, true);
+    req.open("GET", "http://70.175.220.179:8080/threads/individualThread/" + id, true);
     req.send();
 
     const reqComment = new XMLHttpRequest();
@@ -82,20 +82,20 @@ function renderThread() {
                 const date = item.posted;
                 const id = item._id;
 
-                $('#comments').append('<h2 id="commenter"></h2><p id="dateComment"></p><p id="comment"></p><br><br>');
+                $('#comments').append('<h2 id="commenter"></h2><p id="dateComment"></p><p id="comment"></p><br>');
                 document.getElementById('comment').innerText = `${text}`;
                 document.getElementById('comment').id = 'comment' + commentCounter;
                 document.getElementById('commenter').innerText = `By: ${author}`;
                 document.getElementById('commenter').id = commenter;
-                document.getElementById('dateComment').innerText = `Posted: ${date}`;
+                document.getElementById('dateComment').innerText = `Posted: ` + correctDate(date, 2);
                 document.getElementById('dateComment').id = 'dateComment' + commentCounter;
 
 
-                if(author == user.username)
+                if(author == user.username || user.userLevel == 2 || user.userLevel == 1)
                 {
 
 
-                    $('#comments').append('<form action="/comments/deleteComment" id="delComment" method="post"><input type="submit" value="Delete Comment"></form>')
+                    $('#comments').append('<form action="/comments/deleteComment" id="delComment" method="post"><input class="submit" type="submit" value="Delete Comment"></form>')
                     document.getElementById('delComment').action = '/comments/deleteComment/' + item._id + '/' + item.threadID;
                     document.getElementById('delComment').id = id;
 
@@ -106,7 +106,7 @@ function renderThread() {
         }
     };
 
-    reqComment.open("GET", "http://68.9.212.228:8080/comments/comments/" + id, true);
+    reqComment.open("GET", "http://70.175.220.179:8080/comments/comments/" + id, true);
     reqComment.send();
 }
 

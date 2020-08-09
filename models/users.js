@@ -23,9 +23,14 @@ const userSchema = new mongoose.Schema({
     birthday: {
         type: Date,
         required: true
+    },
+    userLevel: {
+        type: Number,
+        default: 0
     }
 
-});
+},
+    {collation: { locale: 'en_US', strength: 2}});
 
 const options = {
     errorMessages: {
