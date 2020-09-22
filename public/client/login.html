@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Login </title>
+    <link rel="stylesheet" href="stylesheets/header.css">
+    <link rel="stylesheet" href="stylesheets/index.css">
+</head>
+
+<body>
+<div>
+    <form action="/login" method="post">
+        <div class="title">
+            <h3>Login</h3>
+        </div>
+        <div class="field">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required/>
+            <br />
+        </div>
+        <div class="field">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+        </div>
+        <div class="field">
+            <input class="submit-btn" type="submit" value="Submit" required />
+        </div>
+
+        <label id="error-message"></label>
+
+    </form>
+
+    <form class="field" action="/register" method="GET">
+        <input class="submit-btn" type="submit" value="Register">
+    </form>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const info = urlParams.get('info');
+
+    if(info) {
+        const errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = info;
+        errorMessage.style.display = "block";
+    }
+</script>
+</body>
+</html>

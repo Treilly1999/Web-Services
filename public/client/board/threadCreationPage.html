@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Thread</title>
+    <link rel="stylesheet" href="stylesheets/header.css">
+</head>
+<body>
+
+    <!-- Header Menu of the Page -->
+    <header>
+        <!-- Top header menu containing
+             logo and Navigation bar -->
+        <div id="top-header">
+            <!-- Navigation Menu -->
+            <nav>
+                <ul>
+                    <li class="active"><a href="/home">Home</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/discussionBoard">Discussion Board</a></li>
+                    <li><a href="/friends">Friends</a></li>
+                    <li><a href="/game">Game</a></li>
+                    <li>
+                        <form action="/search/searchPage" method="post">
+                            <label for="searchParam">Search: </label>
+                            <input style = "height: 10px" type="text" id="searchParam" name="searchParam">
+                            <input  style="" type="submit" value="Find">
+                        </form>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li class="active" style="float: right;"><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div style="text-align: center; margin-top: 25px">
+
+        <form action="/threads/createThread" method="POST">
+            <div>
+                <label for="topic">Topic</label>
+                <input type="text" id="topic" name="topic" required>
+            </div>
+            <div style="margin: 20px">
+                <label for="text"></label>
+                <textarea id="text" name="text" rows="4" cols="50" required></textarea>
+            </div>
+            <div>
+                <input class="submit" type="submit" value="Create Thread">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

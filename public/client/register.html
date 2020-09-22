@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="stylesheets/header.css">
+    <link rel="stylesheet" href="stylesheets/index.css">
+</head>
+<body>
+<form action="/register" method="post">
+    <div class="title">
+        <h3>Register</h3>
+    </div>
+    <div class="field">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required/>
+        <br />
+    </div>
+    <div class="field">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required />
+    </div>
+    <div class="field">
+        <label for="name">Real Name:</label>
+        <input type="text" id="name" name="name" required />
+    </div>
+    <div class="field">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required />
+    </div>
+    <div class="field">
+        <label for="birthday">Date of Birth:</label>
+        <input type="date" id="birthday" name="birthday" required />
+    </div>
+
+    <div class="field">
+        <input class="submit-btn" type="submit" value="Submit" required />
+    </div>
+    <label id="error-message"></label>
+</form>
+</body>
+</html>
